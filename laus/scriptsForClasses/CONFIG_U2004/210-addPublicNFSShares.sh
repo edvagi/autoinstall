@@ -36,11 +36,13 @@ echo "
 
 ## create config file for /home/shares
 echo "
-lehrmaterial	-fstype=nfs4	nfs02:/lehrmaterial
+testees			-fstype=nfs4	nfs02:/testees
 
-schueler		-fstype=nfs4	nfs03:/schueler
+lehrmaterial		-fstype=nfs4	nfs03:/lehrmaterial
 
-optProgs		-fstype=nfs4	nfs04:/optProgs
+schueler		-fstype=nfs4	nfs04:/schueler
+
+optProgs		-fstype=nfs4	nfs05:/optProgs
 " > /etc/auto.shares
 
 systemctl restart autofs
