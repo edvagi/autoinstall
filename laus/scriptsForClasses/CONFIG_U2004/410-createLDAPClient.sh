@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 2020-12-18 Thomas Neuhold
+# changed app / net to agi / tsn
+
 # https://help.ubuntu.com/community/LDAPClientAuthentication
 # https://help.ubuntu.com/lts/serverguide/openldap-server.html
 
@@ -38,12 +41,12 @@ sed '/#host 127.0.0.1/ s/#host 127.0.0.1/host ldap01 ldap02/' -i $file
 ## disable connection uri in /etc/ldap.conf
 sed '/uri ldapi/ s/uri ldapi/#uri ldapi/' -i $file
 
-## set ldap base for APP in /etc/ldap.conf
-sed '/base dc=example,dc=net/ s/base dc=example,dc=net/base dc=app,dc=net/' -i $file
+## set ldap base for AGI in /etc/ldap.conf
+sed '/base dc=example,dc=net/ s/base dc=example,dc=net/base dc=agi,dc=tsn/' -i $file
 
 ## set ldap read_bind_dn in /etc/ldap.conf
 sed -e "{
-	/#binddn cn=proxyuser,dc=padl,dc=com/ s/#binddn cn=proxyuser,dc=padl,dc=com/binddn cn=ldapread,dc=app,dc=net/
+	/#binddn cn=proxyuser,dc=padl,dc=com/ s/#binddn cn=proxyuser,dc=padl,dc=com/binddn cn=ldapread,dc=agi,dc=tsn/
 }" -e "{
 	/#bindpw/ s/#bindpw secret/bindpw nurlesen/
 }" -i $file
